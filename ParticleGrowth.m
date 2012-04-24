@@ -50,12 +50,12 @@ CpAging(dimerbin) = -1*CpAging(1);
 CpAging(dimerbin) = 2*R_age_r - 2*R_age_f;
 modelAtm.bla = CpAging;
 bla = modelAtm.bla;
-if (CpAging(dimerbin)*1 + Cp(dimerbin)) < 1e-5
+if (CpAging(dimerbin)*1 + Cp(dimerbin)) < eps
     CpAging(dimerbin) = 0;
     CpAging(1) = 0;
 end
 
-if (CpAging(1)*1 + Cp(1)) < 1e-5
+if (CpAging(1)*1 + Cp(1)) < eps
     CpAging(dimerbin) = 0;
     CpAging(1) = 0;
 end
@@ -91,10 +91,12 @@ for i=1:n
        Phi(i) = 0; 
    end
    
-  CvAging(i) = 0; % no aging
-  dCv(i)=P(i)-Phi(i)+CvAging(i);
+  %CvAging(i) = 0; % no aging
+  %dCv(i)=P(i)-Phi(i)+CvAging(i);
   %dCp(i)=Phi(i)+CvAging(i);
-  dCp(i) = Phi(i);    
+ % dCp(i) = Phi(i);    
+        dCv(i)=P(i)-Phi(i);
+        dCp(i)=Phi(i)+CpAging(i);
       %Change in gas-phase concentration, or production minus flux to particles, [=] ug/m3-s
       %Change in particle-phase concentration, or flux to particle, [=] ug/m3-s
 end
