@@ -10,7 +10,7 @@ trackMode = zeros(1,4);
 
 %modelAtm.NumBins=4;
 modelAtm.NumBins = 10;
-modelAtm.TotalPop = 10;
+modelAtm.TotalPop = 20;
 n = modelAtm.NumBins;
 TotalPop = modelAtm.TotalPop;
 
@@ -45,7 +45,8 @@ LoadAtmos;
 LoadSOAProps;
 %modelAtm.Injection = 1287; %120307.... 120202
 modelAtm.Injection = 429; %120326... 120409
-modelAtm.V_small = 2;
+%modelAtm.V_small = 2;
+modelAtm.V_small = 0.1;
 %[Caer_part, Cvap_part] = Partition(modelAtm.Injection/modelAtm.V_small)%
 %
 %for i = 1:length(Caer_part)
