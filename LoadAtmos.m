@@ -16,7 +16,7 @@ modelAtm.air.lambda = 67e-9;
 
 %modelAtm.CStarBasis = [1e-2 1e-1 1e0 1e1];
 %modelAtm.CStarBasis = [1e-2 1e-1 1e0 1e1 1e2 1e3 1e4];
-modelAtm.CStarBasis = [1e-2 1e-1 1e0 1e1 1e2 1e3 1e4 1e5 1e6];
+modelAtm.CStarBasis = [1e-15 1e-2 1e-1 1e0 1e1 1e2 1e3 1e4 1e5 1e6];
 %modelAtm.CStarBasis = [0.34]*10;
 %modelAtm.CStarBasis = [7.85E-2];
 %modelAtm.alphaProd = [1 0 0 0];

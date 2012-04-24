@@ -9,13 +9,13 @@ trackCondSink = zeros(1,11);
 trackMode = zeros(1,4);
 
 %modelAtm.NumBins=4;
-modelAtm.NumBins = 9;
+modelAtm.NumBins = 10;
 modelAtm.TotalPop = 10;
 n = modelAtm.NumBins;
 TotalPop = modelAtm.TotalPop;
 
 %Set simulation options: 1=yes, 0 = no ----------------------------
-modelAtm.AgingYN = 0; 
+modelAtm.AgingYN = 1; 
 
 modelAtm.AmmonSeedYN = 0;
 modelAtm.AmmonSeedYNPop2 = 1;
@@ -28,7 +28,7 @@ modelAtm.AlphaPYNVap = 0;
 modelAtm.CoagYN = 0;
 
 %Set simulation parameters ----------------------------
-TimeVector = [0 7]*3600;
+TimeVector = [0 10]*3600;
 
 EmitTime = 3*3600;
 modelAtm.EmitTime = EmitTime;
@@ -46,17 +46,17 @@ LoadSOAProps;
 %modelAtm.Injection = 1287; %120307.... 120202
 modelAtm.Injection = 429; %120326... 120409
 modelAtm.V_small = 2;
-[Caer_part, Cvap_part] = Partition(modelAtm.Injection/modelAtm.V_small)
+%[Caer_part, Cvap_part] = Partition(modelAtm.Injection/modelAtm.V_small)%
+%
+%for i = 1:length(Caer_part)
+%    Caer_frac(i) = Caer_part(i)/sum(Caer_part);
+%end
 
-for i = 1:length(Caer_part)
-    Caer_frac(i) = Caer_part(i)/sum(Caer_part);
-end
-
-modelAtm.Caer_part = Caer_part;
-modelAtm.Caer_frac = Caer_frac;
-modelAtm.Cvap_part = Cvap_part;
-modelAtm.Caer_tot_initial = sum(Caer_part);
-modelAtm.SOA.InitialComp = modelAtm.Caer_frac;
+%modelAtm.Caer_part = Caer_part;
+%modelAtm.Caer_frac = Caer_frac;
+%modelAtm.Cvap_part = Cvap_part;
+%modelAtm.Caer_tot_initial = sum(Caer_part);
+%modelAtm.SOA.InitialComp = modelAtm.Caer_frac;
 modelAtm.NumBins = length(modelAtm.SOA.InitialComp);
 n = modelAtm.NumBins;
 modelAtm.SOA.lambda = 100e-9;
@@ -65,14 +65,14 @@ LoadSulfProps(SulfMassConc);
 %TotalPop = 20;
 
 DF = 150;
-DF = 10; %120409
+%DF = 10; %120409
 
 modelAtm.DF = DF;
 
 %[Dp_bin_vect, N_tot_bin] = LoadData120202(TotalPop);
 %[Dp_bin_vect, N_tot_bin] = LoadData120307(TotalPop);
-%[Dp_bin_vect, N_tot_bin] = LoadData120326(TotalPop);
-[Dp_bin_vect, N_tot_bin] = LoadData120409(TotalPop);
+[Dp_bin_vect, N_tot_bin] = LoadData120326(TotalPop); %0.1 m3
+%[Dp_bin_vect, N_tot_bin] = LoadData120409(TotalPop); %2 m3
 for i = 1:length(Dp_bin_vect)
 Mass_bin_vect(i) = N_tot_bin(i)*pi/6*modelAtm.SOA.rho*(Dp_bin_vect(i)*1e-9)^3*1e6*1/DF;
 end
@@ -109,6 +109,7 @@ modelAtm.sumCp0_stack = sum(Cp0_stack);
 
 %modelAtm.Cv0 = Cv0_contrib(14,:)*1/DF; % just choose size bin with most particles for now
 %modelAtm.Cv0 = Cv0_contrib(ceil(modelAtm.Pop/2+1),:)*1/DF; % just choose size bin with most particles for now
+Cvap_part = zeros(1,modelAtm.NumBins);
 modelAtm.Cv0 = Cvap_part*1/DF;
 Cv0 = modelAtm.Cv0;
 Dp0 = DiamSusp;

@@ -53,6 +53,7 @@ modelAtm.SOA.InitialComp = [0.0090 0 0.1143 0.1919 0.2557 0.2695 0.1440];
 modelAtm.SOA.InitialComp = [0.0059 0 0.0753 0.1269 0.1756 0.2482 0.3126 0.0522];
 modelAtm.SOA.InitialComp = [0.0753 0.1269 0.1756 0.2482 0.3126 0.0522]; %1 to 100,000
 modelAtm.SOA.InitialComp = [1];
+modelAtm.SOA.InitialComp = [0.4858 0.0085 0 0.1082 0.1816 0.0605 0.1294 0.0110 0.0139 0.0012]; %0.1 m3
 modelAtm.NumBins = length(modelAtm.CStarBasis)
 
 %if modelAtm.UptakeFact >= 0.1
@@ -78,7 +79,7 @@ modelAtm.NumBins = length(modelAtm.CStarBasis)
     %modelAtm.SOA.alphaProd = [0 0 0.8 0.1]; %For testing!
 %end
 
-modelAtm.SOA.alphaProd = [0.004 0.000 0.051 0.086 0.120 0.183 0.400 0.350 0.200];
+modelAtm.SOA.alphaProd = [0 0.004 0.000 0.051 0.086 0.120 0.183 0.400 0.350 0.200];
 %modelAtm.SOA.alphaProd = [1];
 
 end
