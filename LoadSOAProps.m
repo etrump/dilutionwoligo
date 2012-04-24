@@ -54,6 +54,7 @@ modelAtm.SOA.InitialComp = [0.0059 0 0.0753 0.1269 0.1756 0.2482 0.3126 0.0522];
 modelAtm.SOA.InitialComp = [0.0753 0.1269 0.1756 0.2482 0.3126 0.0522]; %1 to 100,000
 modelAtm.SOA.InitialComp = [1];
 modelAtm.SOA.InitialComp = [0.4858 0.0085 0 0.1082 0.1816 0.0605 0.1294 0.0110 0.0139 0.0012]; %0.1 m3
+modelAtm.SOA.InitialComp = [0 0.0342 0 0.4147 0.4855 0.0417 0.0152 0.0081 0.0006 0.0000]; % 2 m3
 modelAtm.NumBins = length(modelAtm.CStarBasis)
 
 %if modelAtm.UptakeFact >= 0.1

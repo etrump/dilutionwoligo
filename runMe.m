@@ -64,15 +64,15 @@ LoadSulfProps(SulfMassConc);
 
 %TotalPop = 20;
 
-DF = 150;
-%DF = 10; %120409
+%DF = 150;
+DF = 10; %120409
 
 modelAtm.DF = DF;
 
 %[Dp_bin_vect, N_tot_bin] = LoadData120202(TotalPop);
 %[Dp_bin_vect, N_tot_bin] = LoadData120307(TotalPop);
-[Dp_bin_vect, N_tot_bin] = LoadData120326(TotalPop); %0.1 m3
-%[Dp_bin_vect, N_tot_bin] = LoadData120409(TotalPop); %2 m3
+%[Dp_bin_vect, N_tot_bin] = LoadData120326(TotalPop); %0.1 m3
+[Dp_bin_vect, N_tot_bin] = LoadData120409(TotalPop); %2 m3
 for i = 1:length(Dp_bin_vect)
 Mass_bin_vect(i) = N_tot_bin(i)*pi/6*modelAtm.SOA.rho*(Dp_bin_vect(i)*1e-9)^3*1e6*1/DF;
 end
