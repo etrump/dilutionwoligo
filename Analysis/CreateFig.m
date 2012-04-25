@@ -31,6 +31,13 @@ end
 CpTot_integrate0 = CpTot_integrate(1);
 VFR = CpTot_integrate/CpTot_integrate0;
 
+VFR_pop = zeros(Tagg,modelAtm.Pop);
+
+for j = 1:modelAtm.Pop
+for k = 1:length(Tagg)   
+    VFR_pop(k,j) = DpT(k,j).^3/DpT(1,j)^3;
+end    
+end
 
 plot1 = plot(Tagg_hr, DpT_nm(:,1),'LineWidth',3)
 
@@ -209,3 +216,25 @@ for i=1:modelAtm.NumBins
 end
 
 CompatDilution = CpT(MaxIndex,:)/totalMassatDilution
+
+
+figure7 = figure('InvertHardcopy','off','Color',[1 1 1]);
+axes1 = axes('Parent',figure7,'LineWidth',3,'FontSize',16);
+box('on');
+hold('all');
+
+plot5 = plot(Tagg/3600,VFR_pop,'LineWidth',3)
+xlabel({'Time (hr)'},'FontSize',16);
+ylabel({'VFR(bin)'},'FontSize',16);
+
+paperSize = [5 4];
+set(gcf,'Units','inches');
+pos = get(gcf,'Position');
+set(gcf,'Position',[[pos(1) pos(2)]  paperSize]);
+set(gcf,'PaperPosition',[[0 0] paperSize]);
+set(gcf, 'PaperUnits', 'inches');
+set(gcf, 'PaperSize', paperSize);
+set(gcf,'Color','none');
+
+if ~exist('./figs','dir'); mkdir('./figs'); end;
+saveas(gcf,['./figs/VFR_bypop.pdf'],'pdf');
