@@ -29,6 +29,7 @@ modelAtm.CoagYN = 0;
 
 %Set simulation parameters ----------------------------
 TimeVector = [0 10]*3600;
+%TimeVector = [0 2.56e4];
 
 EmitTime = 3*3600;
 modelAtm.EmitTime = EmitTime;
@@ -43,8 +44,8 @@ modelAtm.ROG = 1e-55;% reacting organic rate [=] ug/m3-s
 %LoadSOAProps(ROG, EmitTime, EmitBin);
 LoadAtmos;
 LoadSOAProps;
-%modelAtm.Injection = 1287; %120307.... 120202
-modelAtm.Injection = 429; %120326... 120409
+modelAtm.Injection = 1287; %120307.... 120202
+%modelAtm.Injection = 429; %120326... 120409
 %modelAtm.V_small = 2;
 modelAtm.V_small = 0.1;
 %[Caer_part, Cvap_part] = Partition(modelAtm.Injection/modelAtm.V_small)%
@@ -71,8 +72,8 @@ DF = 150;
 modelAtm.DF = DF;
 
 %[Dp_bin_vect, N_tot_bin] = LoadData120202(TotalPop);
-%[Dp_bin_vect, N_tot_bin] = LoadData120307(TotalPop);
-[Dp_bin_vect, N_tot_bin] = LoadData120326(TotalPop); %0.1 m3
+[Dp_bin_vect, N_tot_bin] = LoadData120307(TotalPop);
+%[Dp_bin_vect, N_tot_bin] = LoadData120326(TotalPop); %0.1 m3
 %[Dp_bin_vect, N_tot_bin] = LoadData120409(TotalPop); %2 m3
 for i = 1:length(Dp_bin_vect)
 Mass_bin_vect(i) = N_tot_bin(i)*pi/6*modelAtm.SOA.rho*(Dp_bin_vect(i)*1e-9)^3*1e6*1/DF;
